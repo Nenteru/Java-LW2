@@ -10,12 +10,11 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <Pane prefHeight="470.0" prefWidth="538.0">
-      <children>
-          <Button fx:id="draw" layoutX="387.0" layoutY="428.0" onAction="#onHelloButtonClick" prefHeight="25.0" prefWidth="137.0" text="Нарисовать" />
-         <Canvas fx:id="canvas" height="346.0" layoutX="13.0" layoutY="14.0" width="512.0" />
-         <ColorPicker fx:id="colorPicker" layoutX="13.0" layoutY="373.0" prefHeight="36.0" prefWidth="512.0" />
-         <TextField fx:id="textField" layoutX="14.0" layoutY="428.0" prefHeight="25.0" prefWidth="363.0" />
-      </children>
-   </Pane>
+    <Pane prefHeight="470.0" prefWidth="538.0">
+        <children>
+            <Canvas fx:id="canvas" height="346.0" layoutX="13.0" layoutY="14.0" onMouseClicked="#onMouseClick" onMouseDragged="#MouseDragged" onMouseReleased="#MouseReleased" width="512.0" />
+            <ColorPicker fx:id="color" layoutX="13.0" layoutY="373.0" onAction="#OnClick" prefHeight="36.0" prefWidth="512.0" />
+            <TextField fx:id="textF" layoutX="14.0" layoutY="428.0" prefHeight="25.0" prefWidth="512.0" />
+        </children>
+    </Pane>
 </VBox>
