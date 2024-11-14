@@ -12,10 +12,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import model.*;
-import model.Shape;
-
 import java.net.URL;
 import java.util.ResourceBundle;
+import model.Memento;
+import model.MemoSelect;
+import model.Shape;
 
 public class HelloController implements Initializable  {
     @FXML
@@ -30,6 +31,8 @@ public class HelloController implements Initializable  {
     private boolean isDragging = false;
     private double dragOffsetX = 0;
     private double dragOffsetY = 0;
+    private MemoSelect memoSelect = new MemoSelect();
+    private Memento temp = null;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         gr = canvas.getGraphicsContext2D();
@@ -43,12 +46,18 @@ public class HelloController implements Initializable  {
         shape.draw(gr);
         dragOffsetX = mouseEvent.getX() - shape.getX();
         dragOffsetY = mouseEvent.getY() - shape.getY();
+        newMemento(); // Добавляем новый момент в историю изменений
     }
     public void OnClick() {
         if(shape != null){
             shape.setColor(color.getValue());
             shape.draw(gr);
+            newMemento();
         }
+    }
+    public void newMemento(){
+        temp = new Memento(shape);
+        memoSelect.push(temp);
     }
     public void MouseDragged(MouseEvent mouseEvent) {
         if (shape != null) {
@@ -60,6 +69,15 @@ public class HelloController implements Initializable  {
             shape.draw(gr);
         }
     }
+    public void ButReturnClick(ActionEvent actionEvent) {
+        if (!memoSelect.mementoList.isEmpty()) {
+            shape = memoSelect.poll().getState();
+            gr.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            shape.draw(gr);
+        }else {
+            newMemento();
+        }
+    }
     public void MouseReleased(MouseEvent mouseEvent) {
         if (isDragging) {
             isDragging = false;
@@ -68,6 +86,7 @@ public class HelloController implements Initializable  {
             shape.setPosition(newX, newY);
             gr.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             shape.draw(gr);
+            newMemento();
         }
     }
 
