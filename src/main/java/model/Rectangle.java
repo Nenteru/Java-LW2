@@ -13,9 +13,30 @@ public class Rectangle extends Shape {
         this.height = height;
     }
 
+//    @Override
+//    public void draw(GraphicsContext gc) {
+//        gc.setFill(color);
+//        gc.fillRect(x, y, width, height);
+//    }
+
     @Override
     public void draw(GraphicsContext gc) {
-        gc.setFill(color);
-        gc.fillRect(x, y, width, height);
+        setCircuit(gc);
+        gc.setLineWidth(2); // Устанавливаем толщину линии, если нужно
+
+        // Вычисляем координаты всех четырех углов прямоугольника
+        double x1 = x;
+        double y1 = y;
+        double x2 = x + width;
+        double y2 = y + height;
+
+        gc.beginPath();
+        gc.moveTo(x1, y1); // Верхний левый угол
+        gc.lineTo(x2, y1); // Верхний правый угол
+        gc.lineTo(x2, y2); // Нижний правый угол
+        gc.lineTo(x1, y2); // Нижний левый угол
+        gc.closePath(); // Замыкаем путь
+        gc.stroke(); // Рисуем линию
     }
+
 }

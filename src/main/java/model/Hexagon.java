@@ -11,7 +11,7 @@ public class Hexagon extends Shape {
 
     @Override
     public void draw(GraphicsContext gc) {
-        gc.setStroke(color);
+        setCircuit(gc);
         double radius = Math.min(x, y) * 0.8;
         gc.beginPath();
         for (int i = 0; i < 6; i++) {

@@ -3,6 +3,8 @@ package model;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import java.util.Random;
+
 abstract public class Shape {
     protected double x;
     protected double y;
@@ -19,6 +21,22 @@ abstract public class Shape {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+
+
+    public void setCircuit(GraphicsContext gc) {
+
+        gc.setStroke(color);
+
+
+        Random rand = new Random();
+        int i = rand.nextInt(0, 10);
+
+        if(i < 5)
+            gc.setLineDashes(3, 3);
+        else
+            gc.setLineDashes(1, 3);
     }
 
     public double getX() {

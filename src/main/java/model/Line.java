@@ -15,7 +15,7 @@ public class Line extends Shape{
 
     @Override
     public void draw(GraphicsContext gc) {
-        gc.setStroke(color);
+        this.setCircuit(gc);
         gc.strokeLine(x,y,length,angle);
     }
 }

@@ -16,7 +16,7 @@ class Circle extends Shape {
 
     public void draw (GraphicsContext gc)
     {
-        gc.setStroke(color);
+        setCircuit(gc);
 
         double centerX = 200, centerY = 200, radius = 125;
         int numPoints = 100;
@@ -33,6 +33,8 @@ class Circle extends Shape {
 
             gc.strokeLine(x1, y1, x2, y2);
         }
+        gc.closePath();
+        gc.stroke();
     }
 
 }

@@ -15,7 +15,7 @@ class Triangle extends Shape{
 
     public void draw (GraphicsContext gc)
     {
-        gc.setStroke(color);
+        setCircuit(gc);
         gc.strokeLine(10, 10, 190, 190);
         gc.strokeLine(10, 10, 190, 10);
         gc.strokeLine(190, 10, 190, 190);
